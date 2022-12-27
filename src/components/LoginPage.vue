@@ -1,13 +1,13 @@
 <template>
   <v-container class="text-center">
-    <v-row>
-      <v-col cols="12" lg="6" class="my-auto hidden-md-and-down">
+    <v-row class="d-flex justify-space-around">
+      <v-col cols="12" md="6" class="my-auto hidden-sm-and-down">
         <div class="d-flex flex-column align-center">
-          <v-img src="../assets/5.jpg" width="100%"></v-img>
+          <v-img src="../assets/loginPageSideImg.svg" width="100%"></v-img>
         </div>
       </v-col>
 
-      <v-col cols="12" lg="6" class="pa-13 my-auto">
+      <v-col cols="12" md="6" sm="9"  class="pa-13 my-auto">
         <div class="d-flex flex-column align-center">
                     <v-img src="../assets/logo.png" width="70"></v-img>
                 </div>
@@ -16,7 +16,7 @@
         <v-form>
           <v-text-field
             v-model="loginEmail"
-            :rules="loginEmailRules"
+            :rules="validation.required"
             label="E-mail"
             required
           ></v-text-field>
@@ -24,12 +24,10 @@
           <v-text-field
             v-model="loginPassword"
             :append-icon="show1 ? 'eye' : 'eye-off'"
-            :rules="[rules.required, rules.min]"
             :type="show1 ? 'text' : 'password'"
             name="input-10-1"
             label="Password"
-            hint="At least 8 characters"
-            counter
+            :rules="validation.required"
             @click:append="show1 = !show1"
           ></v-text-field>
 
@@ -57,7 +55,7 @@
               <v-icon class="mx-2">mdi-google</v-icon> Login with Google
             </v-btn>
           </div>
-          <small>Not Register Yet? <a>Sign Up</a></small>
+          <small>Not Register Yet? <router-link to="/signup"><a>Sign Up</a></router-link></small>
         </v-form>
       </v-col>
     </v-row>
@@ -65,48 +63,28 @@
 </template>
   
 <script>
+import * as validations from '../validations'
 export default {
   name: "LoginPage",
+  created(){
+    this.validation = validations
+  },
   methods: {
     validate() {
-      if (this.$refs.loginForm.validate()) {
-        // submit form to server/API here...
-      }
+      
     },
-    // reset() {
-    //   this.$refs.form.reset();
-    // },
-    // resetValidation() {
-    //   this.$refs.form.resetValidation();
-    // },
+    
   },
   data: () => ({
+    show1: false,
     valid: true,
     loginPassword: "",
     loginEmail: "",
-    loginEmailRules: [
-      (v) => !!v || "Required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-    emailRules: [
-      (v) => !!v || "Required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-
-    show1: false,
-    rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => (v && v.length >= 8) || "Min 8 characters",
-    },
+    validation: ''
   }),
+
 };
 </script>
-
-
-
-
-
-
 
 <style scoped>
 p {
