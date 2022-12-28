@@ -7,18 +7,18 @@
         </div>
       </v-col>
 
-      <v-col cols="12" md="6" sm="9" class="pa-13 my-auto">
+      <v-col cols="12" md="6" sm="9" class="px-13 my-auto">
         <div class="d-flex flex-column align-center">
-          <v-img src="../assets/logo.png" width="70"></v-img>
+          <v-img src="../assets/logo.png" width="150"></v-img>
         </div>
-
-        <h1 class="mt-6 mb-6">Sign Up</h1>
+        <h1 class="mt-4 mb-2 text-h5 ml-3 font-weight-medium">Sign Up</h1>
 
         <v-row>
           <v-col cols="12" lg="6" md="6" sm="6" class="f-name">
             <v-text-field
+            class="pt-0"
               v-model="firstName"
-              :rules="[validation.required, validation.nameValidation]"
+              :rules="validation.nameValidation"
               label="First Name"
               maxlength="20"
               required
@@ -27,8 +27,9 @@
 
           <v-col cols="12" lg="6" md="6" sm="6" class="l-name">
             <v-text-field
+            class="pt-0"
               v-model="lastName"
-              :rules="[validation.required, validation.nameValidation]"
+              :rules="validation.nameValidation"
               label="Last Name"
               maxlength="20"
               required
@@ -37,17 +38,19 @@
         </v-row>
 
         <v-text-field
+        class="pt-0"
           v-model="email"
-          :rules="[validation.required, validation.emailValidation]"
+          :rules="validation.emailValidation"
           label="E-mail"
           required
           width="100"
         ></v-text-field>
 
         <v-text-field
+        class="pt-0"
           v-model="password"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[validation.required, validation.passwordValidation]"
+          :rules="validation.passwordValidation"
           :type="show1 ? 'text' : 'password'"
           name="input-10-1"
           label="Password"
@@ -55,31 +58,31 @@
         ></v-text-field>
 
         <v-text-field
+        class="pt-0"
           v-model="verify"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-          :rules="[validation.required, passwordMatch]"
+          :rules="[passwordMatch]"
           :type="show1 ? 'text' : 'password'"
           name="input-10-1"
           label="Confirm Password"
           @click:append="show1 = !show1"
+          required
         ></v-text-field>
 
         <div class="d-flex flex-column align-center py-3 buttons_padding">
           <v-btn
             rounded
-            color="primary"
+            color="#9f75b4"
             large
-            class="sign_btn"
+            class="sign_btn white--text pt-0"
             :disabled="!valid"
             @click="validate"
           >
             Sign Up
           </v-btn>
-
           <div class="d-flex flex-column align-center">
             <p><span>or</span></p>
           </div>
-
           <v-btn rounded color="secondary" large class="sign_btn">
             <v-icon class="mx-2">mdi-google</v-icon> Sign Up with Google
           </v-btn>
