@@ -1,5 +1,6 @@
 <template>
   <div>
+    <v-container>
     <div>
       <v-img
         max-height="250"
@@ -27,11 +28,11 @@
       <h1 class="mt-6 mb-4 text-h5 ml-3 font-weight-medium text-center">
         Profile Update
       </h1>
-      <v-row class="d-flex justify-around">
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Full Name</h4>
+      <v-row class="d-flex justify-around flex-container ">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0">
+          <h4 class="mt-4 text-center">Full Name</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" sm="9" class="d-flex justify-start py-0">
           <v-text-field
             required
             :rules="validation.nameValidation"
@@ -48,11 +49,11 @@
         </v-col>
       </v-row>
 
-      <v-row class="d-flex justify-around">
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Email</h4>
+      <v-row class="d-flex justify-around flex-container">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0 ">
+          <h4 class="mt-4 text-center">Email</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" sm="9" class="d-flex justify-start py-0">
           <v-text-field
             :rules="validation.emailValidation"
             color="indigo"
@@ -62,18 +63,16 @@
         </v-col>
       </v-row>
 
-      <v-row class="d-flex justify-around">
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Password</h4>
+      <v-row class="d-flex justify-around flex-container">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0">
+          <h4 class="mt-4 text-center">Password</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" sm="9" class="d-flex justify-start py-0">
           <v-text-field
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             :rules="validation.passwordValidation"
             :type="show1 ? 'text' : 'password'"
             name="input-10-1"
-            hint="At least 8 characters"
-            counter
             color="indigo"
             @click:append="show1 = !show1"
             label="Password"
@@ -82,11 +81,11 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Age</h4>
+      <v-row class="flex-container">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0">
+          <h4 class="mt-4 text-center">Age</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" sm="9" class="d-flex justify-start py-0">
           <v-slider
             class="mr-4 mt-4"
             required
@@ -101,11 +100,11 @@
         </v-col>
       </v-row>
 
-      <v-row>
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Gender</h4>
+      <v-row class="flex-container">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0">
+          <h4 class="mt-4 text-center">Gender</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" sm="9" class="d-flex justify-start py-0">
           <v-select
             class="mr-4"
             :items="gender"
@@ -116,11 +115,11 @@
           ></v-select>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col md="3" sm="3" class="d-flex justify-center">
-          <h4 class="ma-5">Job Title</h4>
+      <v-row class="flex-container">
+        <v-col md="3" sm="3" class="d-flex justify-center py-0">
+          <h4 class="mt-4 text-center">Job Title</h4>
         </v-col>
-        <v-col md="8" sm="9" class="d-flex justify-start">
+        <v-col md="8" m="9" class="d-flex justify-start py-0">
           <v-text-field
             required
             :rules="validation.nameValidation"
@@ -131,8 +130,7 @@
         </v-col>
       </v-row>
     </div>
-
-    <div class="box"></div>
+  </v-container>
   </div>
 </template>
    
@@ -161,15 +159,15 @@ export default {
    
 
    <style>
-.got {
-  white-space: pre-wrap;
-}
 
 .round {
   border-top-left-radius: 75px;
 }
-
-.box {
-  height: 20px;
+@media screen and (max-width:600px) {
+  .flex-container{
+  flex-direction: column;
+  width: 80%;
+  margin: auto
+}
 }
 </style>

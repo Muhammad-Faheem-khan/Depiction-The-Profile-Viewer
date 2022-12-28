@@ -8,6 +8,7 @@ import CheckEmail from './components/forgetPassword/CheckEmail'
 import SetPassword from './components/forgetPassword/SetPassword'
 import PasswordReset from './components/forgetPassword/PasswordReset'
 import UpdateProfile from './components/HomeChildComponents/UpdateProfile'
+import MainSection from './components/HomeChildComponents/MainSection'
 
 
 Vue.use(VueRouter)
@@ -16,8 +17,9 @@ const routes = [
     { name: 'login', path: '/', component: LoginPage },
     { name: 'signUp', path: '/signup', component: SignUpPage },
     {
-      name: 'home', path: '/home', component: HomePage, children: [
-        {name: 'navBar', path: '/', component: UpdateProfile}
+       path: '/home', component: HomePage, children: [
+        {name: 'mainSection', path: '/', component: MainSection},
+        {name: 'updateProfile', path: '/home/updateprofile', component: UpdateProfile}
       ],
       //  beforeEnter: (to, from, next) => {
       //   if (!sessionStorage.getItem('token')) next({ name: 'login' })
