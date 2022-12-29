@@ -29,7 +29,7 @@
               </v-btn>
               <router-link
                 class="text-decoration-none"
-                to="./home/updateprofile"
+                to="/home/updateprofile"
               >
                 <v-btn class="ma-2" outlined height="2rem" color="primary">
                   Update
@@ -157,7 +157,7 @@
                   <img
                     :src="contact.picture"
                     alt="image"
-                    width="200"
+                    width="150"
                     class="rounded-lg"
                   />
                     <p class="text-body-1 text-center text-capitalize">{{contact.title}} {{contact.firstName}} {{ contact.lastName }}</p>

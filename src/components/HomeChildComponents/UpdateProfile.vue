@@ -17,7 +17,7 @@
             </v-row>
           </v-col>
           <v-col md="4" class="d-flex justify-end">
-            <v-btn class="mx-2 my-2 mt-4" depressed> Cancel </v-btn>
+           <router-link to="/home" class="text-decoration-none"> <v-btn class="mx-2 my-2 mt-4" depressed> Cancel </v-btn> </router-link>
             <v-btn depressed dark class="mx-2 my-2 mr-4 mt-4"> Save </v-btn>
           </v-col>
         </v-row>
