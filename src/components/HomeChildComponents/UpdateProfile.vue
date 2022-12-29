@@ -18,7 +18,7 @@
           </v-col>
           <v-col md="4" class="d-flex justify-end">
            <router-link to="/home" class="text-decoration-none"> <v-btn class="mx-2 my-2 mt-4" depressed> Cancel </v-btn> </router-link>
-            <v-btn depressed dark class="mx-2 my-2 mr-4 mt-4"> Save </v-btn>
+            <v-btn depressed dark class="mx-2 my-2 mr-4 mt-4" @click="updateUserData"> Save </v-btn>
           </v-col>
         </v-row>
       </div>
@@ -38,6 +38,7 @@
             :rules="validation.nameValidation"
             label="First Name"
             color="indigo"
+            v-model="updateData.firstName"
           ></v-text-field>
           <v-text-field
             required
@@ -45,6 +46,7 @@
             label="Last Name "
             color="indigo"
             class="ml-4 mr-4"
+            v-model="updateData.lastName"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -59,6 +61,7 @@
             color="indigo"
             label="Email"
             class="mr-4"
+            v-model="updateData.email"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -77,6 +80,7 @@
             @click:append="show1 = !show1"
             label="Password"
             class="mr-4"
+            v-model="updateData.password"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -94,8 +98,8 @@
             label="Age"
             min="1"
             max="100"
-            value="20"
             thumb-label
+            v-model="updateData.age"
           ></v-slider>
         </v-col>
       </v-row>
@@ -112,6 +116,7 @@
             label="Gender"
             color="indigo"
             required
+            v-model="updateData.gender"
           ></v-select>
         </v-col>
       </v-row>
@@ -126,6 +131,7 @@
             label="Name"
             color="indigo"
             class="mr-4"
+            v-model="updateData.job"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -137,6 +143,7 @@
    <script>
 import MainUpload from "./sub-components/MainUpload.vue";
 import * as validations from "../../validations";
+import * as userDataHandling from '../../userDataHandling';
 export default {
   name: "MainProfile",
   components: {
@@ -144,16 +151,34 @@ export default {
   },
   created() {
     this.validation = validations;
+    this.userMethods = userDataHandling
   },
   data() {
     return {
       validation: "",
+      userMethods: null,
       show1: false,
       gender: ["Male", "Female", "Other"],
+      updateData: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        age: '21',
+        gender: '',
+        job: ''
+      }
     };
   },
 
-  methods: {},
+  methods: {
+    updateUserData(){
+      let oldData = this.$store.state.userData
+      console.log(oldData, this.updateData)
+      this.userMethods.updateUser(oldData, this.updateData)
+
+    }
+  },
 };
 </script>
    

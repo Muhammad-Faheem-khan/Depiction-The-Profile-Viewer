@@ -14,51 +14,55 @@
         <h1 class="mt-4 mb-2 text-h5 ml-3 font-weight-medium">Sign Up</h1>
 
         <v-row>
-          <v-col cols="12" lg="6" md="6" sm="6" class="f-name">
+          <v-col cols="12" lg="6" md="6" sm="6" class="f-name mb-2">
             <v-text-field
             class="pt-0"
-              v-model="firstName"
+              v-model="signUpData.firstName"
               :rules="validation.nameValidation"
               label="First Name"
               maxlength="20"
               required
+              @keypress.enter="validate"
             ></v-text-field>
           </v-col>
 
-          <v-col cols="12" lg="6" md="6" sm="6" class="l-name">
+          <v-col cols="12" lg="6" md="6" sm="6" class="l-name mb-2">
             <v-text-field
             class="pt-0"
-              v-model="lastName"
+              v-model="signUpData.lastName"
               :rules="validation.nameValidation"
               label="Last Name"
               maxlength="20"
               required
+              @keypress.enter="validate"
             ></v-text-field>
           </v-col>
         </v-row>
 
         <v-text-field
-        class="pt-0"
-          v-model="email"
+        class="pt-0 my-2"
+          v-model="signUpData.email"
           :rules="validation.emailValidation"
           label="E-mail"
           required
           width="100"
+          @keypress.enter="validate"
         ></v-text-field>
 
         <v-text-field
-        class="pt-0"
-          v-model="password"
+        class="pt-0 my-2"
+          v-model="signUpData.password"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="validation.passwordValidation"
           :type="show1 ? 'text' : 'password'"
           name="input-10-1"
           label="Password"
           @click:append="show1 = !show1"
+          @keypress.enter="validate"
         ></v-text-field>
 
         <v-text-field
-        class="pt-0"
+        class="pt-0 my-2"
           v-model="verify"
           :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
           :rules="[passwordMatch]"
@@ -67,15 +71,15 @@
           label="Confirm Password"
           @click:append="show1 = !show1"
           required
+          @keypress.enter="validate"
         ></v-text-field>
 
-        <div class="d-flex flex-column align-center py-3 buttons_padding">
+        <div class="d-flex flex-column align-center py-0 buttons_padding">
           <v-btn
             rounded
             color="#9f75b4"
             large
             class="sign_btn white--text pt-0"
-            :disabled="!valid"
             @click="validate"
           >
             Sign Up
@@ -86,7 +90,7 @@
           <v-btn rounded color="secondary" large class="sign_btn">
             <v-icon class="mx-2">mdi-google</v-icon> Sign Up with Google
           </v-btn>
-          <small class="mt-3">Already have an account? <router-link to="/"><a>Login</a></router-link></small>
+          <small class="mt-1">Already have an account? <router-link to="/"><a>Login</a></router-link></small>
         </div>
       </v-col>
     </v-row>
@@ -95,31 +99,42 @@
 
 <script>
 import * as validations from '../validations'
+import * as userDataHandling from '../userDataHandling'
 export default {
   name: "SignUpPage",
   created(){
     this.validation = validations
+    this.userMethods = userDataHandling
   },
   computed: {
     passwordMatch() {
-      return () => this.password === this.verify || "Password must match";
+      return () => this.signUpData.password === this.verify || "Password must match";
     },
   },
+    
   methods: {
     validate() {
+      if(this.signUpData.firstName && this.signUpData.lastName && this.signUpData.email && this.signUpData.password){
+        this.userMethods.insertUserData(this.signUpData)
+        this.$router.push('/')
+      }
     },
   },
-  data: () => ({
-    valid: true,
+  data() {
+    return {
     show1: false,
+    verify: "",
     validation: null, 
-    firstName: "",
+    userMethods: null,
+    signUpData: {
+      firstName: "",
     lastName: "",
     email: "",
     password: "",
-    verify: "",
+    }
     
-  }),
+    } 
+  },
 };
 </script>
 <style scoped>

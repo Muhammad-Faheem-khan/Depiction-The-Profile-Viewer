@@ -1,32 +1,34 @@
 <template>
   <div class="d-flex">
     <v-row>
-      <v-col class="col-md-8 col-sm-12">
+      <v-col class="col-md-8 col-sm-12 col-12">
         <v-container>
-          <div class="d-flex my-5">
+          <div class="d-flex userData1">
+          <div class="d-flex userData  my-5">
             <img
               src="../../assets/1.jpg"
               alt="loading"
               class="rounded-lg image1"
             />
-            <div class="pl-3">
+            <div class="pl-3 userData">
               <v-btn
                 depressed
                 color="#703b8a"
-                class="white--text"
+                class="white--text mt-4"
                 height="1.5rem"
               >
                 New user
               </v-btn>
-              <h2>Gabriela Richardson</h2>
+              <h2 class="text-capitalize">{{ userData.firstName }} {{ userData.lastName }}</h2>
               <p class="mb-0">
-                <b>School: </b> <span>Qazi Grammer Boys High School</span>
+                <b>Email: </b> <span>{{ userData.email }}</span> </p>
+                <p class="mb-0">
+                <b>Age: </b> <span>{{ userData.age? userData.age : '21' }}</span>
               </p>
-              <p><b>Role: </b> <span>Web Developer</span></p>
+              
+              <p><b>Job Role: </b> <span>{{userData.job ? userData.job : 'Web Developer'}}</span></p>
 
-              <v-btn class="ma-2" outlined height="2rem" color="red">
-                View full profile
-              </v-btn>
+      
               <router-link
                 class="text-decoration-none"
                 to="/home/updateprofile"
@@ -37,10 +39,11 @@
               </router-link>
             </div>
           </div>
+        </div>
 
           <div>
             <v-row class="d-flex justify-space-around mb-4">
-              <v-col class="col-md-5">
+              <v-col cols="12" sm="5">
                 <div>
                   <span class="d-flex justify-space-between mb-3">
                     <h3 class="text-h5 font-weight-medium " >Areas of interest</h3>
@@ -101,7 +104,7 @@
                   </div>
                 </div>
               </v-col>
-              <v-col class="col-md-5">
+              <v-col cols="12" sm="5">
                 <span class="d-flex justify-space-between mb-3">
                   <h3 class="text-h5 font-weight-medium ">Health</h3>
                   <v-icon> mdi-bottle-tonic-plus-outline </v-icon>
@@ -203,6 +206,9 @@ export default {
     },
     socialContact(){
         return this.$store.state.socialContact
+    },
+    userData(){
+      return this.$store.state.userData
     }
   },
 
@@ -231,4 +237,17 @@ export default {
   height: 10rem;
   width: 10rem;
 }
+@media screen and (max-width:959px) {
+  .userData1{
+    justify-content: center;
+  }
+}
+@media screen and (max-width:500px) {
+  .userData{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+}
+
 </style>

@@ -1,16 +1,11 @@
 <template>
-  <v-navigation-drawer
-    color="#9f75b4"
-    dark
-    permanent
-    height="100vh"
-    width="100%"
+  <nav
   >
-    <v-list>
+    <v-list color="#9f75b4" dark height="100vh">
       <div class="d-flex flex-column align-center my-3">
         <v-img src="../../assets/logo2.png" width="100"></v-img>
-        <h3>Taimoor Ali</h3>
-        <small>Web Developer</small>
+        <h3 class="text-h5 ">Depiction</h3>
+        <small>The Profile Viewer</small>
       </div>
 
       <v-list-item  class="link mb-2">
@@ -49,17 +44,15 @@
           <v-list-item-title>Settings</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-    </v-list>
-
-    <template v-slot:append>
-      <div class="pb-4 text-center">
+      <div class="pb-4 mt-16 text-center">
         <v-btn rounded color="dark">
           <v-icon class="mx-2">mdi-logout-variant</v-icon>
           Logout
         </v-btn>
       </div>
-    </template>
-  </v-navigation-drawer>
+    </v-list>
+
+  </nav>
 </template>
 
 <script>

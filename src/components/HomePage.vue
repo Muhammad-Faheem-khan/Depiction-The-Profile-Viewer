@@ -12,12 +12,16 @@
           <v-toolbar-title class="mt-9">Depiction</v-toolbar-title>
         </div>
         <v-spacer></v-spacer>
+        <v-text-field append-icon="mdi-magnify" label="Search" single-line outlined class="mt-6 hidden-xs-only"></v-text-field>
         <v-app-bar-nav-icon
           class="mr-2"
           @click="drawer = !drawer"
         ></v-app-bar-nav-icon>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" absolute left temporary>
+      <v-navigation-drawer color="#9f75b4"
+    width="220" v-model="drawer"
+    dark
+     absolute left temporary>
         <NavBar />
       </v-navigation-drawer>
 
@@ -38,13 +42,16 @@ export default {
   name: "HomePage",
   created(){
     this.$store.dispatch('friendListData')
+    this.$store.dispatch('getUserData')
   },
   components: {
     NavBar,
   },
-  data: () => ({
-    drawer: false,
-  }),
+  data(){
+    return{
+      drawer: false,
+    }
+  },
 };
 </script>
 

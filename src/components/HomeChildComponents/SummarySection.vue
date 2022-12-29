@@ -7,18 +7,19 @@
       <template>
         <div class="text-center">
           <h1 class="text-h5 font-weight-medium">Trading Sequences</h1>
-          <v-progress-circular :rotate="-90" :size="100" :width="15" :value="value" color="primary">
+          <v-progress-circular :rotate="-90" :size="100" :width="5" :value="value" color="primary">
             {{ value }}
+            Clients
           </v-progress-circular>
-          <h2 class="text-h6 font-weight-medium mb-3">Active Clients</h2>
-          <v-progress-circular :rotate="90" :size="100" :width="15" :value="value" color="red">
+          <v-progress-circular :rotate="90" :size="100" :width="5" :value="value" color="red">
             {{ value }}
+            Earnings
           </v-progress-circular>
-          <h2 class="text-h6 font-weight-medium mb-3">Active Clients</h2>
+          
         </div>
       </template>
     
-    <h2 class="text-h5 font-weight-medium mt-4" >Why Is A Profile Blurb Important?</h2>
+    <h2 class="text-h5 text-center font-weight-medium mt-4" >Why Is A Profile Blurb Important?</h2>
 
     <!-- card starting-->
     <v-card class="mx-auto rounded-lg   blue-grey lighten-5 mt-5" outlined>

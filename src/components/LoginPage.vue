@@ -2,12 +2,12 @@
   <v-container class="text-center">
     <v-row class="d-flex justify-space-around">
       <v-col cols="12" md="6" class="my-auto hidden-sm-and-down">
-        <div class="d-flex flex-column align-center mt-4">
+        <div class="d-flex flex-column align-center ">
           <v-img src="../assets/loginPageSideImg.svg" width="100%"></v-img>
         </div>
       </v-col>
 
-      <v-col cols="12" md="6" sm="9"  class="px-13 ">
+      <v-col cols="12" md="6" sm="9"  class="px-13  mt-8">
         <div class="d-flex flex-column align-center">
                     <v-img src="../assets/logo.png" width="150"></v-img>
                 </div>
@@ -15,20 +15,23 @@
         <h1 class="mt-6 mb-4 text-h5 ml-3 font-weight-medium">Login</h1>
         <v-form>
           <v-text-field
-            v-model="loginEmail"
+            v-model="loginData.userID"
             :rules="validation.required"
-            label="E-mail"
+            label="E-mail or Username"
             required
+            @keypress.enter="validate"
           ></v-text-field>
 
           <v-text-field
-            v-model="loginPassword"
-            :append-icon="show1 ? 'eye' : 'eye-off'"
+            v-model="loginData.password"
+            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
             :type="show1 ? 'text' : 'password'"
             name="input-10-1"
             label="Password"
             :rules="validation.required"
-            @click:append="show1 = !show1"
+          @click:append="show1 = !show1"
+          required
+          @keypress.enter="validate"
           ></v-text-field>
 
           <div class="text-end mb-2">
@@ -40,7 +43,6 @@
               color="#9f75b4"
               large
               class="sign_btn white--text"
-              :disabled="!valid"
               @click="validate"
             >
               Login
@@ -70,16 +72,19 @@ export default {
   },
   methods: {
     validate() {
-      
+      if(this.loginData.userID && this.loginData.password){
+        this.$store.dispatch('loginValidation', this.loginData)
+      }
     },
     
   },
   data: () => ({
     show1: false,
-    valid: true,
-    loginPassword: "",
-    loginEmail: "",
-    validation: ''
+    validation: '',
+    loginData: {
+      userID: '',
+      password: ''
+    }
   }),
 
 };
