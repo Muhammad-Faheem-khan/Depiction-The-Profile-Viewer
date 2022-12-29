@@ -28,13 +28,12 @@ const routes = [
       //   }
       // }
     },
-    { name: 'forgetPass', path: '/forgetPassword', component: ForgetPassword1,
-      children: [
+    { name: 'forgetPass', path: '/forgetPassword', component: ForgetPassword1},
         { name: 'checkEmail', path: '/emailVerification', component: CheckEmail },
         { name: 'setPassword', path: '/setPassword', component: SetPassword },
         { name: 'resetPassword', path: '/passwordReset', component: PasswordReset },
-    ]
-   },
+    
+  
     
   ]
   

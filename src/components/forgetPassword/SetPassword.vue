@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     setPassword(){
-      this.$router.push('/setPassword')
+      this.$router.push('/passwordReset')
     }
   },
   computed: {

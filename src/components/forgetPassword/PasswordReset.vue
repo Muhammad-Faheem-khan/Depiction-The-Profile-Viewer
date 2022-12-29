@@ -15,7 +15,7 @@
       </p>
     </div>
       <div class="d-flex justify-center">
-      <router-link to="/passwordReset" class="text-decoration-none">
+      <router-link to="/" class="text-decoration-none">
             <v-btn
               class="forget-btn white--text"
               large
