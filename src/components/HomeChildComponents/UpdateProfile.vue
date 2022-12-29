@@ -176,7 +176,8 @@ export default {
       let oldData = this.$store.state.userData
       console.log(oldData, this.updateData)
       this.userMethods.updateUser(oldData, this.updateData)
-
+      localStorage.setItem('currentUser', JSON.stringify(this.updateData))
+      this.$store.dispatch('getUserData')
     }
   },
 };

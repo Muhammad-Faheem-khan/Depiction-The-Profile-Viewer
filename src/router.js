@@ -21,12 +21,12 @@ const routes = [
         {name: 'mainSection', path: '/', component: MainSection},
         {name: 'updateProfile', path: '/home/updateprofile', component: UpdateProfile}
       ],
-      //  beforeEnter: (to, from, next) => {
-      //   if (!sessionStorage.getItem('token')) next({ name: 'login' })
-      //   else {
-      //     next()
-      //   }
-      // }
+       beforeEnter: (to, from, next) => {
+        if (!sessionStorage.getItem('token')) next({ name: 'login' })
+        else {
+          next()
+        }
+      }
     },
     { name: 'forgetPass', path: '/forgetPassword', component: ForgetPassword1},
         { name: 'checkEmail', path: '/emailVerification', component: CheckEmail },

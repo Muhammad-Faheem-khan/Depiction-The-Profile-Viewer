@@ -19,14 +19,14 @@
               >
                 New user
               </v-btn>
-              <h2 class="text-capitalize">{{ userData.firstName }} {{ userData.lastName }}</h2>
+              <h2 class="text-capitalize">{{userData? userData.firstName: 'User Name' }} {{userData? userData.lastName: '' }}</h2>
               <p class="mb-0">
-                <b>Email: </b> <span>{{ userData.email }}</span> </p>
+                <b>Email: </b> <span>{{userData?  userData.email : '***@gmail.com'}}</span> </p>
                 <p class="mb-0">
-                <b>Age: </b> <span>{{ userData.age? userData.age : '21' }}</span>
+                <b>Age: </b> <span>{{ userData ? userData.age? userData.age: '21' : '21' }}</span>
               </p>
               
-              <p><b>Job Role: </b> <span>{{userData.job ? userData.job : 'Web Developer'}}</span></p>
+              <p><b>Job Role: </b> <span>{{userData ? userData.job? userData.job: 'Web Developer' : 'Web Developer'}}</span></p>
 
       
               <router-link
