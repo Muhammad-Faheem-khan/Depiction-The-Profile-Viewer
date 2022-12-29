@@ -26,7 +26,7 @@
                 class="mx-2 my-2 mr-4 mt-4"
                 @click="updateUserData"
               >
-                Save
+                Save Data
               </v-btn>
             </v-col>
           </v-row>
@@ -157,9 +157,9 @@ export default {
     this.userMethods = userDataHandling;
   },
   mounted() {
-    this.updateData = {...this.oldData}
-    console.log(this.updateData)
+    this.updateData = {...this.oldData, image: this.$store.state.img}
   },
+ 
   data() {
     return {
       validation: "",
@@ -181,9 +181,11 @@ export default {
 
   methods: {
     updateUserData() {
+      this.$store.commit("alertOn")
       this.userMethods.updateUser(this.oldData, this.updateData);
       localStorage.setItem("currentUser", JSON.stringify(this.updateData));
       this.$store.dispatch("getUserData");
+      this.$router.push('/home')
     },
   },
 };

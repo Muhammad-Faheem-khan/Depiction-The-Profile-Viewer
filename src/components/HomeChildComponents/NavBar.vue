@@ -45,7 +45,7 @@
         </v-list-item-content>
       </v-list-item>
       <div class="pb-4 mt-16 text-center">
-        <v-btn rounded color="dark">
+        <v-btn rounded size="large" color="dark" @click="logoutUser">
           <v-icon class="mx-2">mdi-logout-variant</v-icon>
           Logout
         </v-btn>
@@ -59,6 +59,13 @@
 
 export default {
   name: "NavBar",
+  methods: {
+    logoutUser(){
+      localStorage.removeItem('currentUser')
+      sessionStorage.removeItem('token')
+      this.$router.push('/')
+    }
+  }
 };
 </script>
 <style>

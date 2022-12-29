@@ -8,15 +8,27 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     socialContact: '',
-    userData: ''
+    userData: '',
+    alert: false,
+    img:''
   },
   mutations: {
+    uploadImg(state, img){
+      state.img = img
+    },
     friendListData(state, data) {
       state.socialContact = data
     },
     getUserData(state, data){
       state.userData = data
+    },
+    alertOn(state){
+      state.alert = true
+    },
+    alertOff(state){
+      state.alert = false
     }
+
   },
   actions: {
     getUserData(context){

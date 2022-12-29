@@ -27,7 +27,7 @@ export function getAllUsers() {
 // function to update user data 
 export function updateUser(oldData, newData) {
     let users = getAllUsers();
-    const recordIndex = users.findIndex(x => x.id === oldData.id)
+    const recordIndex = users.findIndex(x => x.email === oldData.email)
     users[recordIndex] = { ...newData }
     localStorage.setItem(KEYS.users, JSON.stringify(users))
 }

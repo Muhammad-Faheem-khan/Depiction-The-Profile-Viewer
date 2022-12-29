@@ -35,7 +35,7 @@
       }),
       props: {
       // Use "value" to enable using v-model
-        value: Object,
+        value: String,
       },
       methods: {
         launchFilePicker(){
@@ -57,11 +57,14 @@
               this.errorText = 'Your file is too big! Please select an image under 1MB'
             } else {
               // Append file into FormData and turn file into image URL
-              let formData = new FormData()
-              let imageURL = URL.createObjectURL(imageFile)
-              formData.append(fieldName, imageFile)
-              // Emit the FormData and image URL to the parent component
-              this.$emit('input', { formData, imageURL })
+              let reader = new FileReader()
+              reader.readAsDataURL(imageFile);
+              reader.onload = (e) => {
+          let image =  e.target.result
+          this.$emit('input', image)
+        
+          this.$store.commit('uploadImg', image)
+            };
             }
           }
         }
