@@ -4,49 +4,64 @@
       <v-col class="col-md-8 col-sm-12 col-12">
         <v-container>
           <div class="d-flex userData1">
-          <div class="d-flex userData  my-5">
-            <img
-              src="../../assets/1.jpg"
-              alt="loading"
-              class="rounded-lg image1"
-            />
-            <div class="pl-3 userData">
-              <v-btn
-                depressed
-                color="#703b8a"
-                class="white--text mt-4"
-                height="1.5rem"
-              >
-                New user
-              </v-btn>
-              <h2 class="text-capitalize">{{userData? userData.firstName: 'User Name' }} {{userData? userData.lastName: '' }}</h2>
-              <p class="mb-0">
-                <b>Email: </b> <span>{{userData?  userData.email : '***@gmail.com'}}</span> </p>
-                <p class="mb-0">
-                <b>Age: </b> <span>{{ userData ? userData.age? userData.age: '21' : '21' }}</span>
-              </p>
-              
-              <p><b>Job Role: </b> <span>{{userData ? userData.job? userData.job: 'Web Developer' : 'Web Developer'}}</span></p>
-
-      
-              <router-link
-                class="text-decoration-none"
-                to="/home/updateprofile"
-              >
-                <v-btn class="ma-2" outlined height="2rem" color="primary">
-                  Update
+            <div class="d-flex userData my-5">
+              <v-img :src= "userData.image ? userData.image : `https://img.freepik.com/free-photo/dreamy-young-woman-sunglasses-looking-front_197531-16739.jpg?w=2000`"
+alt="loading" class="rounded-lg image1"></v-img>
+              <div class="pl-3 userData">
+                <v-btn
+                  depressed
+                  color="#703b8a"
+                  class="white--text mt-4"
+                  height="1.5rem"
+                >
+                  New user
                 </v-btn>
-              </router-link>
+                <h2 class="text-capitalize">
+                  {{ userData ? userData.firstName : "User Name" }}
+                  {{ userData ? userData.lastName : "" }}
+                </h2>
+                <p class="mb-0">
+                  <b>Email: </b>
+                  <span>{{ userData ? userData.email : "***@gmail.com" }}</span>
+                </p>
+                <p class="mb-0">
+                  <b>Age: </b>
+                  <span>{{
+                    userData ? (userData.age ? userData.age : "21") : "21"
+                  }}</span>
+                </p>
+
+                <p>
+                  <b>Job Role: </b>
+                  <span>{{
+                    userData
+                      ? userData.job
+                        ? userData.job
+                        : "Web Developer"
+                      : "Web Developer"
+                  }}</span>
+                </p>
+
+                <router-link
+                  class="text-decoration-none"
+                  to="/home/updateprofile"
+                >
+                  <v-btn class="ma-2" outlined height="2rem" color="primary">
+                    Update
+                  </v-btn>
+                </router-link>
+              </div>
             </div>
           </div>
-        </div>
 
           <div>
             <v-row class="d-flex justify-space-around mb-4">
               <v-col cols="12" sm="5">
                 <div>
                   <span class="d-flex justify-space-between mb-3">
-                    <h3 class="text-h5 font-weight-medium " >Areas of interest</h3>
+                    <h3 class="text-h5 font-weight-medium">
+                      Areas of interest
+                    </h3>
                     <v-icon> mdi-chart-bubble </v-icon>
                   </span>
 
@@ -106,7 +121,7 @@
               </v-col>
               <v-col cols="12" sm="5">
                 <span class="d-flex justify-space-between mb-3">
-                  <h3 class="text-h5 font-weight-medium ">Health</h3>
+                  <h3 class="text-h5 font-weight-medium">Health</h3>
                   <v-icon> mdi-bottle-tonic-plus-outline </v-icon>
                 </span>
                 <template>
@@ -153,19 +168,27 @@
             </v-row>
 
             <div>
-                <h3 class="text-h5 font-weight-medium text-center my-3">Social Contacts</h3>
+              <h3 class="text-h5 font-weight-medium text-center my-3">
+                Social Contacts
+              </h3>
 
               <div class="d-flex justify-center flex-wrap">
-                <div class="ml-4 mb-4"  v-for="contact in socialContact.data" :key="contact.id">
+                <div
+                  class="ml-4 mb-4"
+                  v-for="contact in socialContact.data"
+                  :key="contact.id"
+                >
                   <img
                     :src="contact.picture"
                     alt="image"
                     width="150"
                     class="rounded-lg"
                   />
-                    <p class="text-body-1 text-center text-capitalize">{{contact.title}} {{contact.firstName}} {{ contact.lastName }}</p>
+                  <p class="text-body-1 text-center text-capitalize">
+                    {{ contact.title }} {{ contact.firstName }}
+                    {{ contact.lastName }}
+                  </p>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -173,11 +196,10 @@
       </v-col>
       <v-col class="col-md-4 py-6 px-4">
         <v-card class="pa-3 hidden-sm-and-down">
-      <SummarySection />
-    </v-card>
+          <SummarySection />
+        </v-card>
       </v-col>
     </v-row>
-
   </div>
 </template>
 
@@ -186,16 +208,20 @@ const exhale = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 import SummarySection from "../HomeChildComponents/SummarySection.vue";
 export default {
   name: "ProfileDetail",
-  
+
   components: {
     SummarySection,
   },
-  data: () => ({
+  data() {
+    return {
     checking: false,
     heartbeats: [],
-  }),
+    image: "../../assets/1.jpg"
+  }
+},
 
   computed: {
+  
     avg() {
       const sum = this.heartbeats.reduce((acc, cur) => acc + cur, 0);
       const length = this.heartbeats.length;
@@ -204,12 +230,12 @@ export default {
 
       return Math.ceil(sum / length);
     },
-    socialContact(){
-        return this.$store.state.socialContact
+    socialContact() {
+      return this.$store.state.socialContact;
     },
-    userData(){
-      return this.$store.state.userData
-    }
+    userData() {
+      return this.$store.state.userData;
+    },
   },
 
   created() {
@@ -237,17 +263,16 @@ export default {
   height: 10rem;
   width: 10rem;
 }
-@media screen and (max-width:959px) {
-  .userData1{
+@media screen and (max-width: 959px) {
+  .userData1 {
     justify-content: center;
   }
 }
-@media screen and (max-width:500px) {
-  .userData{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media screen and (max-width: 500px) {
+  .userData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
-}
-
 </style>
