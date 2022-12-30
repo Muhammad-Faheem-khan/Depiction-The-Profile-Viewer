@@ -3,7 +3,7 @@
   <div class="pa-2 ">
     <!-- starting coading-->
 
-    <v-text-field append-icon="mdi-magnify" label="Search" single-line outlined ></v-text-field>
+    <v-text-field append-icon="mdi-magnify" label="Search" single-line outlined class="rounded-pill" ></v-text-field>
       <template>
         <div class="text-center">
           <h1 class="text-h6 font-weight-medium">Year's Progress</h1>

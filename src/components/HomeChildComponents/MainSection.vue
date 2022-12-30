@@ -4,7 +4,7 @@
       <v-col class="col-md-8 col-sm-12 col-12">
         <v-container style="position:relative">
           <div style="position:absolute; right: 0; width: 14rem;">
-            <v-alert v-model="alertOn" dismissible color="#703b8a" border="left" elevation="2" colored-border
+            <v-alert :value="alertOn" style="z-index:100" dismissible color="#703b8a" border="left" elevation="2" colored-border
               icon="mdi-check-circle">
               User profile is Updated!
             </v-alert>
@@ -125,7 +125,7 @@
             <div>
               <h3 class="text-h5 font-weight-medium text-center my-3">Top Reviewed Clients</h3>
               <div class="d-flex justify-center flex-wrap">
-                <div class="mr-5 mb-4 d-flex flex-column align-center" v-for="contact in socialContact.data" :key="contact.id">
+                <div class="mr-5 mb-4 d-flex flex-column align-center" style="width:8rem" v-for="contact in socialContact.data" :key="contact.id">
                   <img :src="contact.picture" alt="image" width="70" class="rounded-pill" />
                   <p class="fonty text-center text-capitalize">{{ contact.firstName }} {{ contact.lastName }}</p>
                 </div>
@@ -134,8 +134,9 @@
           </div>
         </v-container>
       </v-col>
-      <v-col class="col-md-4 py-6 px-4">
-        <v-card class="pa-3 hidden-sm-and-down">
+      <v-col class=" col-md-4 py-6">
+        <v-card class="py-3 ">
+          <h3 class="text-center text-h5 font-weight-medium mb-4">Summary Section</h3>
           <SummarySection />
         </v-card>
       </v-col>

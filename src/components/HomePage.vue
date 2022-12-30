@@ -12,7 +12,7 @@
           <v-toolbar-title class="mt-9">Depiction</v-toolbar-title>
         </div>
         <v-spacer></v-spacer>
-        <v-text-field append-icon="mdi-magnify" label="Search" single-line outlined class="mt-6 hidden-xs-only"></v-text-field>
+        <v-text-field append-icon="mdi-magnify" label="Search" single-line outlined class="mt-6 rounded-pill hidden-xs-only"></v-text-field>
         <v-app-bar-nav-icon
           class="mr-2"
           @click="drawer = !drawer"

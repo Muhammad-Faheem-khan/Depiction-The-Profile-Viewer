@@ -14,22 +14,17 @@
         </h1>
         <p class="text-body-2">We sent a password reset link to</p>
         <p class="text-body-1">*****email*****</p>
-        <a
-          href="https://mail.google.com/"
-          target="_blank"
-          class="text-decoration-none"
-        >
           <v-btn
             class="forget-btn white--text"
+            @click="checkComponent"
             large
             rounded
             color="#9f75b4"
             >Open Email App</v-btn
           >
-        </a>
     <div class="d-flex justify-center mt-4 flex-container">
       <p class="mt-1 mr-3">Didn't receive email?</p>
-      <v-btn text color="#9f75b4" @click="checkComponent">Click to resend</v-btn>
+      <v-btn text color="#9f75b4" >Click to resend</v-btn>
     </div>
     <div class="d-flex justify-center mt-4">
       <router-link to="/" class="text-decoration-none">

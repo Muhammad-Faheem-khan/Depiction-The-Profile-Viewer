@@ -2,10 +2,13 @@
   <div class="check">
     <image-input v-model="avatar">
       <div slot="activator">
-        <v-avatar size="150px" v-ripple v-if="!avatar" class="grey lighten-3 mb-3">
+        <v-avatar size="150px" v-ripple v-if="!userData.image && !avatar" class="grey lighten-3 mb-3">
           <v-icon size="70">
             mdi-account-arrow-up-outline
           </v-icon>
+        </v-avatar>
+        <v-avatar size="150px" v-ripple v-else-if="!avatar" class="mb-3">
+          <img :src="userData.image" alt="avatar">
         </v-avatar>
         <v-avatar size="150px" v-ripple v-else class="mb-3">
           <img :src="avatar" alt="avatar">
@@ -21,9 +24,11 @@ export default {
   name: 'app',
   data() {
     return {
+      userData: this.$store.state.userData,
       avatar: null,
       saving: false,
-      saved: false
+      saved: false,
+
     }
   },
   components: {

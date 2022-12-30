@@ -62,8 +62,9 @@
               reader.onload = (e) => {
           let image =  e.target.result
           this.$emit('input', image)
-        
+          if(image){
           this.$store.commit('uploadImg', image)
+          }
             };
             }
           }

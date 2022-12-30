@@ -7,9 +7,9 @@
         </div>
       </v-col>
 
-      <v-col cols="12" md="6" sm="9" class="px-13 my-auto">
+      <v-col cols="12" md="6" sm="9" class="px-13 my-auto ">
         <div class="d-flex flex-column align-center">
-          <v-img src="../assets/logo.png" width="150"></v-img>
+          <v-img src="../assets/logo.png" width="150" ></v-img>
         </div>
         <h1 class="mt-4 mb-2 text-h5 ml-3 font-weight-medium">Sign Up</h1>
 

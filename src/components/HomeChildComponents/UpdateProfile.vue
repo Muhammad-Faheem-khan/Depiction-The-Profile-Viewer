@@ -157,7 +157,7 @@ export default {
     this.userMethods = userDataHandling;
   },
   mounted() {
-    this.updateData = {...this.oldData, image: this.$store.state.img}
+    this.updateData = {...this.oldData}
   },
  
   data() {
@@ -175,12 +175,14 @@ export default {
         age: "21",
         gender: "",
         job: "",
+        image: ''
       },
     };
   },
 
   methods: {
     updateUserData() {
+      this.updateData = {...this.oldData, image: this.$store.state.img}
       this.$store.commit("alertOn")
       this.userMethods.updateUser(this.oldData, this.updateData);
       localStorage.setItem("currentUser", JSON.stringify(this.updateData));
