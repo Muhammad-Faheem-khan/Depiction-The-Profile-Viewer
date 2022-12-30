@@ -81,7 +81,7 @@ export default {
   methods: {
     // check signUp fields are all filled up 
     validate() {
-      if (this.signUpData.firstName && this.signUpData.lastName && this.signUpData.email && this.signUpData.password) {
+      if (this.signUpData.firstName && this.signUpData.lastName && this.signUpData.email && this.signUpData.password && this.signUpData.password === this.verify) {
         this.userMethods.insertUserData(this.signUpData)
         this.$router.push('/')
       }
