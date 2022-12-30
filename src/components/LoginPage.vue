@@ -1,50 +1,40 @@
 <template>
+  <!--Main-Container-->
   <v-container class="text-center">
+    <!--Main-Row-->
     <v-row class="d-flex justify-space-around">
+      <!--First-Column-->
       <v-col cols="12" md="6" class="my-auto hidden-sm-and-down">
-        <div class="d-flex flex-column align-center ">
+        <!--Animated-Image-->
+        <div class="d-flex flex-column align-center">
           <v-img src="../assets/loginPageSideImg.svg" width="100%"></v-img>
         </div>
       </v-col>
-
-      <v-col cols="12" md="6" sm="9"  class="px-13  mt-8">
+      <!--Second-Column-->
+      <v-col cols="12" md="6" sm="9" class="px-13 mt-8">
+        <!--Logo-Image-->
         <div class="d-flex flex-column align-center">
-                    <v-img src="../assets/logo.png" width="150"></v-img>
-                </div>
-
+          <v-img src="../assets/logo.png" width="150"></v-img>
+        </div>
+        <!--Main-Heading-->
         <h1 class="mt-6 mb-4 text-h5 ml-3 font-weight-medium">Login</h1>
+        <!--Login-Form-->
         <v-form>
-          <v-text-field
-            v-model="loginData.userID"
-            :rules="validation.required"
-            label="E-mail or Username"
-            required
-            @keypress.enter="validate"
-          ></v-text-field>
-
-          <v-text-field
-            v-model="loginData.password"
-            :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-            :type="show1 ? 'text' : 'password'"
-            name="input-10-1"
-            label="Password"
-            :rules="validation.required"
-          @click:append="show1 = !show1"
-          required
-          @keypress.enter="validate"
-          ></v-text-field>
-
+          <!--Email/Username-Field-->
+          <v-text-field v-model="loginData.userID" :rules="validation.required" label="E-mail or Username" required
+            @keypress.enter="validate"></v-text-field>
+          <!--Password-Field-->
+          <v-text-field v-model="loginData.password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+            :type="show1 ? 'text' : 'password'" name="input-10-1" label="Password" :rules="validation.required"
+            @click:append="show1 = !show1" required @keypress.enter="validate"></v-text-field>
+          <!--Forgot-Password-->
           <div class="text-end mb-2">
-            <small><router-link to="/forgetPassword"><a>Forgot Password? </a></router-link> </small>
+            <small><router-link to="/forgetPassword"><a>Forgot Password? </a></router-link>
+            </small>
           </div>
+          <!--Submit-Button-->
           <div class="d-flex flex-column align-center py-3 buttons_padding">
-            <v-btn
-              rounded
-              color="#9f75b4"
-              large
-              class="sign_btn white--text"
-              @click="validate"
-            >
+            <v-btn rounded color="#9f75b4" large class="sign_btn white--text" @click="validate">
               Login
             </v-btn>
 
@@ -56,27 +46,30 @@
               <v-icon class="mx-2">mdi-google</v-icon> Login with Google
             </v-btn>
           </div>
-          <small>Not Register Yet? <router-link to="/signup"><a>Sign Up</a></router-link></small>
+          <!--Not-Register-->
+          <small>Not Register Yet?
+            <router-link to="/signup"><a>Sign Up</a></router-link></small>
         </v-form>
       </v-col>
     </v-row>
   </v-container>
 </template>
+
   
 <script>
 import * as validations from '../validations'
 export default {
   name: "LoginPage",
-  created(){
+  created() {
     this.validation = validations
   },
   methods: {
+    // function to check both fields are present to login
     validate() {
-      if(this.loginData.userID && this.loginData.password){
+      if (this.loginData.userID && this.loginData.password) {
         this.$store.dispatch('loginValidation', this.loginData)
       }
     },
-    
   },
   data: () => ({
     show1: false,

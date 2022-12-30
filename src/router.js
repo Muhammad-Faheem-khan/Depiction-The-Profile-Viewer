@@ -10,14 +10,13 @@ import PasswordReset from './components/forgetPassword/PasswordReset'
 import UpdateProfile from './components/HomeChildComponents/UpdateProfile'
 import MainSection from './components/HomeChildComponents/MainSection'
 
-
 Vue.use(VueRouter)
 
+// setting routes
 const routes = [
     { name: 'login', path: '/', component: LoginPage },
     { name: 'signUp', path: '/signup', component: SignUpPage },
-    {
-       path: '/home', component: HomePage, children: [
+    {path: '/home', component: HomePage, children: [
         {name: 'mainSection', path: '/', component: MainSection},
         {name: 'updateProfile', path: '/home/updateprofile', component: UpdateProfile}
       ],
@@ -31,12 +30,8 @@ const routes = [
     { name: 'forgetPass', path: '/forgetPassword', component: ForgetPassword1},
         { name: 'checkEmail', path: '/emailVerification', component: CheckEmail },
         { name: 'setPassword', path: '/setPassword', component: SetPassword },
-        { name: 'resetPassword', path: '/passwordReset', component: PasswordReset },
-    
-  
-    
+        { name: 'resetPassword', path: '/passwordReset', component: PasswordReset },  
   ]
-  
   export const router = new VueRouter({
     mode: 'history',
     routes,

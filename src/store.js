@@ -10,31 +10,37 @@ export const store = new Vuex.Store({
     socialContact: '',
     userData: '',
     alert: false,
-    img:''
+    img: ''
   },
   mutations: {
-    uploadImg(state, img){
+    // mutation for img setting
+    uploadImg(state, img) {
       state.img = img
     },
+    // mutation for setting  contact detail
     friendListData(state, data) {
       state.socialContact = data
     },
-    getUserData(state, data){
+    // mutation for setting user data from local storage or Api response
+    getUserData(state, data) {
       state.userData = data
     },
-    alertOn(state){
+    // mutations to handle alert showing on profile update
+    alertOn(state) {
       state.alert = true
     },
-    alertOff(state){
+    alertOff(state) {
       state.alert = false
     }
 
   },
   actions: {
-    getUserData(context){
+    // action get user data from local storage after user sign up
+    getUserData(context) {
       let userData = JSON.parse(localStorage.getItem('currentUser'))
       context.commit('getUserData', userData)
     },
+    // action to fetch contact data from dummy JSON Api
     friendListData(context) {
       fetch('https://dummyapi.io/data/v1/user?limit=10', {
         headers: { 'app-id': appId }
@@ -46,6 +52,7 @@ export const store = new Vuex.Store({
           console.error(`Api is not working properly due to ${error.message}`);
         })
     },
+    // check user info from local storage as well as from Api response
     loginValidation(context, data) {
       let users = userDataHandling.getAllUsers()
       let recordIndex = users.findIndex(x => x.email == data.userID)
@@ -53,7 +60,7 @@ export const store = new Vuex.Store({
         sessionStorage.setItem('token', users[recordIndex].id)
         localStorage.setItem('currentUser', JSON.stringify(users[recordIndex]))
         router.push('/home')
-      }else{
+      } else {
         fetch('https://dummyjson.com/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -62,19 +69,16 @@ export const store = new Vuex.Store({
             password: data.password,
           })
         }).then(response => response.json()).then(
-          data => {
-            console.log(data)
+          res => {
             if (!data.message) {
-              sessionStorage.setItem('token', data.token)
-              localStorage.setItem('currentUser', JSON.stringify(data))
+              sessionStorage.setItem('token', res.token)
+              localStorage.setItem('currentUser', JSON.stringify({ ...res, password: data.password }))
+              context.commit("uploadImg", res.image)
               router.push('/home')
             }
           }
         )
       }
-
-      
     }
-
   }
 })

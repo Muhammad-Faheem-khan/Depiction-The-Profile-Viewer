@@ -35,6 +35,7 @@ export default {
     ImageInput: ImageInput
   },
   watch: {
+    // watch avater value 
     avatar: {
       handler: function () {
         this.saved = false

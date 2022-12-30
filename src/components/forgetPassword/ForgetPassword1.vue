@@ -1,35 +1,44 @@
 <template>
+  <!--Main-Container-->
   <v-container class="my-6">
+    <!--Animated-Image-->
     <v-row class="text-center d-flex">
       <v-col cols="12">
         <v-avatar size="180">
           <img src="../../assets/forget-password-img.svg" />
-       </v-avatar>
+        </v-avatar>
       </v-col>
     </v-row>
-
+    <!--Heading-->
     <div class="text-center">
-        <h1 class="mt-2 mb-3 text-h5 ml-3 font-weight-medium">
-          Forget Password?
-        </h1>
+      <h1 class="mt-2 mb-3 text-h5 ml-3 font-weight-medium">
+        Forget Password?
+      </h1>
+      <!--Paragraph-->
+      <p class="text-body-2">No worries, we will send you verification email</p>
+    </div>
 
-        <p class="text-body-2">
-          No worries, we will send you verification email
-        </p>
-      </div>
     <v-row class="d-flex justify-center">
-      <v-col cols="6"  >
-        <v-text-field class="mt-1"  label="Verify Email">
-        </v-text-field>
+      <!--Text-Field-->
+      <v-col cols="6">
+        <v-text-field class="mt-1" label="Verify Email"> </v-text-field>
+        <!--ResetPassword-Button-->
         <div class="d-flex justify-center mt-8">
-          <v-btn class="forget-btn white--text" large rounded color="#9f75b4" @click="resetPassowrd"
-            >Reset Password</v-btn>
+          <v-btn
+            class="forget-btn white--text"
+            large
+            rounded
+            color="#9f75b4"
+            @click="resetPassowrd"
+            >Reset Password</v-btn
+          >
         </div>
       </v-col>
     </v-row>
+    <!--BacktoLogin-Button-->
     <div class="d-flex justify-center mt-4">
       <router-link to="/" class="text-decoration-none">
-        <v-btn class="forget-btn white--text" large rounded color="secondary" >
+        <v-btn class="forget-btn white--text" large rounded color="secondary">
           <v-icon>mdi-arrow-left-thin</v-icon> Back to Log In
         </v-btn></router-link
       >
@@ -40,25 +49,21 @@
 <script>
 export default {
   name: "ComponentOne",
-  data(){
-    return {
-
-    }
+  data() {
+    return {};
   },
   methods: {
-    resetPassowrd(){
-      this.$router.push('/emailVerification')
-    }
-  }
-  
+    resetPassowrd() {
+      this.$router.push("/emailVerification");
+    },
+  },
 };
-
 </script>
 <style scoped>
-
 .forget-btn {
   width: 18rem;
 }
+
 @media only screen and (max-width: 600px) {
   .forget-btn {
     width: 11rem;
