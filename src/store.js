@@ -57,9 +57,12 @@ export const store = new Vuex.Store({
       let users = userDataHandling.getAllUsers()
       let recordIndex = users.findIndex(x => x.email == data.userID)
       if (users[recordIndex] && users[recordIndex].password == data.password) {
+        if(users[recordIndex].id){
         sessionStorage.setItem('token', users[recordIndex].id)
+      
         localStorage.setItem('currentUser', JSON.stringify(users[recordIndex]))
         router.push('/home')
+        }
       } else {
         fetch('https://dummyjson.com/auth/login', {
           method: 'POST',
@@ -70,7 +73,8 @@ export const store = new Vuex.Store({
           })
         }).then(response => response.json()).then(
           res => {
-            if (!data.message) {
+            if (!res.message ) {
+
               sessionStorage.setItem('token', res.token)
               localStorage.setItem('currentUser', JSON.stringify({ ...res, password: data.password }))
               context.commit("uploadImg", res.image)
